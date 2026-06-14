@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Guia DELTA para Profissões"
+  description="Descubra como a Inteligência Artificial transforma o seu cargo. 161 profissões com 5 aplicações práticas prontas para usar. Presente gratuito da FJ Smart."
+>
+  <style>
+    .guia-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 80px);
+      background: #0A1628;
+      padding: 0;
+    }
+
+    /* Badge topo */
+    .guia-topbar {
+      background: rgba(220,175,60,0.08);
+      border-bottom: 0.5px solid rgba(220,175,60,0.2);
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #DCAF3C;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Iframe full-width */
+    .guia-frame {
+      width: 100%;
+      border: none;
+      display: block;
+      background: #0A1628;
+      /* altura dinâmica via JS abaixo */
+      min-height: 100vh;
+    }
+  </style>
+
+  <div class="guia-wrapper">
+    <div class="guia-topbar">
+      🎁 Presente Gratuito · Guia DELTA para Profissões · FJ Smart — Inteligência Pessoal
+    </div>
+    <iframe
+      id="guiaFrame"
+      class="guia-frame"
+      src="/guia-delta/index.html"
+      title="Guia DELTA para Profissões — FJ Smart"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <script>
+    // Ajusta altura do iframe dinamicamente
+    const frame = document.getElementById('guiaFrame') as HTMLIFrameElement;
+    if (frame) {
+      frame.addEventListener('load', () => {
+        try {
+          const h = frame.contentDocument?.body?.scrollHeight;
+          if (h && h > 400) frame.style.height = h + 'px';
+        } catch {
+          frame.style.height = '100vh';
+        }
+      });
+      // Fallback: altura da janela
+      frame.style.height = window.innerHeight + 'px';
+      window.addEventListener('resize', () => {
+        frame.style.height = window.innerHeight + 'px';
+      });
+    }
+  </script>
+</BaseLayout>
