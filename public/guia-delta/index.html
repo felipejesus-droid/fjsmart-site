@@ -37,9 +37,50 @@ html{scroll-behavior:smooth}
 .modal::-webkit-scrollbar{width:5px}
 .modal::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px}
 .chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid;white-space:nowrap}
+
+/* FJ Smart Nav */
+.fj-header{background:rgba(10,22,40,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,212,255,0.1);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:64px;}
+.fj-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.fj-logo-mark{width:36px;height:36px;border:1.5px solid #00D4FF;border-radius:4px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,212,255,0.25);background:rgba(0,212,255,0.05);font-family:'Syne',sans-serif;font-weight:900;font-size:14px;color:#F5F7FA;letter-spacing:0.04em;}
+.fj-logo-text{display:flex;flex-direction:column;gap:1px;}
+.fj-logo-brand{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.1em;color:#F5F7FA;}
+.fj-logo-tagline{font-size:9px;letter-spacing:0.3em;color:#00D4FF;text-transform:uppercase;font-weight:300;}
+.fj-nav-links{display:flex;align-items:center;gap:20px;list-style:none;}
+.fj-nav-link{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(245,247,250,0.5);text-decoration:none;transition:color 0.2s;}
+.fj-nav-link:hover{color:#F5F7FA;}
+.fj-nav-gift{color:#DCAF3C!important;border:0.5px solid rgba(220,175,60,0.3);border-radius:4px;padding:4px 10px;}
+.fj-nav-gift:hover{background:rgba(220,175,60,0.1);}
+.fj-nav-cta{background:#00D4FF;color:#0A1628!important;font-weight:800;padding:8px 16px;border-radius:4px;}
+.fj-nav-cta:hover{background:#00bde8;}
+.fj-accent-bar{height:2px;background:linear-gradient(90deg,transparent,#00D4FF,#DCAF3C,transparent);}
+.fj-footer{background:#03060D;border-top:0.5px solid rgba(255,255,255,0.05);padding:24px 20px;margin-top:0;}
+.fj-footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;}
+.fj-footer-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:rgba(245,247,250,0.2);}
+.fj-footer-link{font-size:11px;color:rgba(0,212,255,0.5);text-decoration:none;letter-spacing:0.08em;}
+.fj-footer-link:hover{color:#00D4FF;}
+
 </style>
 </head>
 <body>
+
+<header class="fj-header">
+  <a href="https://fjsmart.com.br" class="fj-logo">
+    <div class="fj-logo-mark">FJ</div>
+    <div class="fj-logo-text">
+      <span class="fj-logo-brand">FJ SMART</span>
+      <span class="fj-logo-tagline">Inteligência Pessoal</span>
+    </div>
+  </a>
+  <ul class="fj-nav-links">
+    <li><a href="/guia-delta" class="fj-nav-link fj-nav-gift">🎁 Guia DELTA</a></li>
+    <li><a href="https://fjsmart.com.br/metodo-delta" class="fj-nav-link">Método DELTA</a></li>
+    <li><a href="https://fjsmart.com.br/servicos" class="fj-nav-link">Serviços</a></li>
+    <li><a href="https://fjsmart.com.br/sobre" class="fj-nav-link">Sobre</a></li>
+    <li><a href="https://fjsmart.com.br/diagnostico" class="fj-nav-link fj-nav-cta">Agendar Diagnóstico</a></li>
+  </ul>
+</header>
+<div class="fj-accent-bar"></div>
+
 <div id="root"></div>
 <script type="text/babel">
 const {useState,useMemo} = React;
@@ -591,5 +632,19 @@ function App(){
 
 ReactDOM.render(React.createElement(App),document.getElementById("root"));
 </script>
+
+<footer class="fj-footer">
+  <div class="fj-footer-inner">
+    <div>
+      <div class="fj-footer-brand">FJ SMART · INTELIGÊNCIA PESSOAL</div>
+      <div style="font-size:10px;color:rgba(245,247,250,0.2);margin-top:2px;">Guia DELTA para Profissões · Presente Gratuito</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="https://fjsmart.com.br" class="fj-footer-link">fjsmart.com.br ↗</a>
+      <a href="https://wa.me/5554996419886" class="fj-footer-link">WhatsApp ↗</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
