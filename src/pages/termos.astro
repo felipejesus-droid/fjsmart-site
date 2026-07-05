@@ -1,0 +1,536 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Termos de Uso, Privacidade & Consentimento IA"
+  description="Termos de Uso, Política de Privacidade e Consentimento de IA da FJ Smart. Completo e em conformidade com a LGPD."
+>
+
+<style is:global>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0A1628;
+  --cyan:#00D4FF;
+  --gold:#DCAF3C;
+  --violet:#7C3AED;
+  --white:#F5F7FA;
+  --surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08);
+  --text-muted:rgba(245,247,250,0.55);
+  --text-body:rgba(245,247,250,0.82);
+}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,22,40,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+.topbar-brand{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--white);text-decoration:none;}
+.topbar-brand span{color:var(--cyan);}
+.topbar-nav{display:flex;gap:1.25rem;}
+.topbar-nav a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+.topbar-nav a:hover{color:var(--cyan);}
+
+.hero{padding:4rem 2rem 3rem;max-width:760px;margin:0 auto;border-bottom:1px solid var(--border);}
+.hero-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:.75rem;}
+.hero-meta{font-size:12px;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.05em;}
+.hero-meta span{color:var(--cyan);}
+
+.tabs-wrap{position:sticky;top:53px;z-index:90;background:rgba(10,22,40,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;width:100%;padding:0 2rem;}
+.tab-btn{padding:1rem 1.25rem;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+.tab-btn.tab-ia.active{color:#A78BFA;border-bottom-color:#A78BFA;}
+.tab-btn:hover:not(.active){color:var(--white);}
+
+.content-wrap{max-width:760px;margin:0 auto;padding:3rem 2rem 5rem;}
+.doc-section{display:none;}
+.doc-section.active{display:block;}
+
+.doc-section h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin:2.5rem 0 .6rem;padding-top:.5rem;border-top:1px solid var(--border);}
+.doc-section h2:first-child{border-top:none;margin-top:0;}
+.doc-section h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--cyan);margin:1.5rem 0 .4rem;letter-spacing:.04em;}
+.doc-section h3.violet{color:#A78BFA;}
+.doc-section p{color:var(--text-body);margin-bottom:1rem;font-size:14.5px;}
+.doc-section ul,.doc-section ol{padding-left:1.4rem;margin-bottom:1rem;}
+.doc-section li{color:var(--text-body);font-size:14px;margin-bottom:.4rem;line-height:1.65;}
+.doc-section strong{color:var(--white);font-weight:500;}
+
+.callout{background:rgba(0,212,255,0.05);border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:1.5rem 0;}
+.callout p{margin-bottom:0;font-size:13.5px;}
+.callout.gold{background:rgba(220,175,60,0.05);border-left-color:var(--gold);}
+.callout.violet{background:rgba(124,58,237,0.08);border-left-color:#A78BFA;}
+.callout.red{background:rgba(239,68,68,0.06);border-left-color:#F87171;}
+
+.contact-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-top:2rem;}
+.contact-box p{margin-bottom:.4rem;font-size:14px;}
+.contact-box a{color:var(--cyan);text-decoration:none;}
+.contact-box a:hover{text-decoration:underline;}
+
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2.5rem;}
+.toc-title{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;}
+.toc.violet .toc-title{color:#A78BFA;}
+.toc ol{padding-left:1.2rem;margin:0;}
+.toc li{margin-bottom:.3rem;}
+.toc a{color:var(--text-muted);font-size:13px;text-decoration:none;}
+.toc a:hover{color:var(--cyan);}
+.toc.violet a:hover{color:#A78BFA;}
+
+.date-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(220,175,60,0.08);border:1px solid rgba(220,175,60,0.2);border-radius:5px;padding:3px 10px;margin-bottom:1.5rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);}
+.date-badge.violet{background:rgba(124,58,237,0.1);border-color:rgba(167,139,250,0.3);color:#A78BFA;}
+
+.consent-block{background:rgba(124,58,237,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:12px;padding:2rem;margin:2rem 0;}
+.consent-intro{font-size:14px;color:var(--text-body);line-height:1.8;margin-bottom:1.5rem;}
+.consent-items{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;}
+.ci{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;padding:.6rem .9rem;background:rgba(255,255,255,0.03);border-radius:7px;border:0.5px solid rgba(167,139,250,0.12);}
+.ci-check{width:16px;height:16px;border:1.5px solid rgba(167,139,250,0.5);border-radius:3px;margin-top:2px;flex-shrink:0;position:relative;}
+.ci-check::after{content:'✓';position:absolute;top:-2px;left:1px;font-size:12px;color:#A78BFA;opacity:.7;}
+.ci-text{font-size:13px;color:var(--text-body);line-height:1.5;}
+.ci-text strong{color:var(--white);}
+
+.sig-area{border-top:1px solid rgba(167,139,250,0.15);padding-top:1.5rem;margin-top:1.5rem;}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.sig-block{}
+.sig-line{border-bottom:1px solid rgba(255,255,255,0.2);height:44px;margin-bottom:.5rem;}
+.sig-label{font-size:10px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;}
+.sig-name{font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(167,139,250,0.7);margin-top:3px;}
+
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem 0;}
+.sc{background:var(--surface);border:0.5px solid rgba(167,139,250,0.15);border-radius:8px;padding:.85rem 1rem;}
+.sc-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(167,139,250,0.6);margin-bottom:.35rem;}
+.sc-items{font-size:12.5px;color:var(--text-body);line-height:1.55;}
+
+.revog-box{background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.2);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0;}
+.revog-box p{margin-bottom:0;font-size:13.5px;color:rgba(245,247,250,0.78);}
+.revog-box strong{color:#F87171;}
+
+.doc-footer{border-top:1px solid var(--border);padding:1.5rem 2rem;max-width:760px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;color:rgba(245,247,250,0.2);}
+.footer-tag{font-size:11px;color:var(--text-muted);}
+
+@media(max-width:600px){
+  .topbar-nav{display:none;}
+  .tabs-wrap{padding:0;overflow-x:auto;}
+  .tab-btn{padding:.85rem .85rem;font-size:9.5px;}
+  .content-wrap{padding:2rem 1.25rem 4rem;}
+  .scope-grid,.sig-grid{grid-template-columns:1fr;}
+}
+</style>
+
+<div class="hero">
+  <div class="hero-eyebrow">Documentos Legais · v2.0</div>
+  <h1 class="hero-title">Termos de Uso, Privacidade<br>&amp; Consentimento IA</h1>
+  <p class="hero-meta">
+    FJ Smart — Inteligência Pessoal ·
+    <span>fjsmart.com.br</span> ·
+    Última atualização: <span>Junho/2025</span>
+  </p>
+</div>
+
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="showTab('termos', this)">Termos de Uso</button>
+  <button class="tab-btn" onclick="showTab('privacidade', this)">Política de Privacidade</button>
+  <button class="tab-btn tab-ia" onclick="showTab('ia', this)">Consentimento IA</button>
+</div>
+
+<main class="content-wrap">
+
+  <!-- ===== TERMOS DE USO ===== -->
+  <div id="tab-termos" class="doc-section active">
+    <div class="date-badge">⚖ Versão 1.0 · Junho de 2025</div>
+    <div class="toc">
+      <div class="toc-title">Índice</div>
+      <ol>
+        <li><a href="#t1">Quem somos</a></li>
+        <li><a href="#t2">Aceitação dos termos</a></li>
+        <li><a href="#t3">Serviços oferecidos</a></li>
+        <li><a href="#t4">Uso permitido do site</a></li>
+        <li><a href="#t5">Propriedade intelectual</a></li>
+        <li><a href="#t6">Limitação de responsabilidade</a></li>
+        <li><a href="#t7">Links externos</a></li>
+        <li><a href="#t8">Alterações nestes termos</a></li>
+        <li><a href="#t9">Foro e lei aplicável</a></li>
+        <li><a href="#t10">Contato</a></li>
+      </ol>
+    </div>
+
+    <h2 id="t1">1. Quem somos</h2>
+    <p>A <strong>FJ Smart — Inteligência Pessoal</strong> é uma consultoria especializada em transformação digital com Inteligência Artificial, fundada por <strong>Felipe Jesus</strong>. Nossas operações são centralizadas em <strong>fjsmart.com.br</strong>.</p>
+    <p>Nosso trabalho abrange diagnóstico de maturidade em IA, implementação do <strong>Método DELTA™</strong>, capacitação de equipes, mentorias individuais e programas voltados a profissionais e empresas.</p>
+
+    <h2 id="t2">2. Aceitação dos termos</h2>
+    <p>Ao acessar e usar o site <strong>fjsmart.com.br</strong>, você declara que leu, compreendeu e concorda com estes Termos. Se não concordar com alguma parte, recomendamos não usar o site.</p>
+    <div class="callout">
+      <p>O uso continuado do site após eventuais atualizações implica aceitação automática das alterações.</p>
+    </div>
+
+    <h2 id="t3">3. Serviços oferecidos</h2>
+    <p>O site fjsmart.com.br funciona como canal institucional, captação de contatos, distribuição de conteúdo educativo e acesso a materiais gratuitos — como o <strong>Guia DELTA para Profissões</strong>. Serviços contratados são formalizados por proposta e contrato separados.</p>
+    <h3>Portfólio disponível:</h3>
+    <ul>
+      <li>Diagnóstico de Maturidade em IA (FJ Smart Score)</li>
+      <li>Transformação DELTA Completa — 5 fases</li>
+      <li>Capacitação em IA para Equipes</li>
+      <li>Mentoria Individual DELTA</li>
+      <li>Imersão IA Aplicada (B2C)</li>
+      <li>Acompanhamento Mensal DELTA</li>
+    </ul>
+    <p>Preços, escopos e prazos são definidos em proposta comercial antes do início de qualquer projeto.</p>
+
+    <h2 id="t4">4. Uso permitido do site</h2>
+    <p>Você concorda em usar este site apenas para fins lícitos. É expressamente proibido:</p>
+    <ul>
+      <li>Reproduzir, distribuir ou comercializar conteúdo do site sem autorização por escrito;</li>
+      <li>Tentar acessar áreas restritas ou sistemas internos;</li>
+      <li>Usar bots ou automações não autorizadas para extrair dados;</li>
+      <li>Publicar conteúdo falso, difamatório ou que viole direitos de terceiros;</li>
+      <li>Usar o nome, marca ou metodologias da FJ Smart sem licença expressa.</li>
+    </ul>
+
+    <h2 id="t5">5. Propriedade intelectual</h2>
+    <p>Todo o conteúdo em fjsmart.com.br — textos, metodologias, nomenclaturas (<strong>Método DELTA™</strong>, <strong>FJ Smart Score</strong>), design, identidade visual, frameworks e materiais educativos — é propriedade exclusiva da FJ Smart ou de seus licenciantes.</p>
+    <p>O uso pessoal e não comercial dos materiais gratuitos publicados é permitido, desde que com atribuição explícita à FJ Smart.</p>
+    <div class="callout gold">
+      <p><strong>Método DELTA™:</strong> a metodologia, seus acrônimos, fases e ferramentas são ativos proprietários. Reprodução comercial ou adaptação sem autorização viola direito intelectual.</p>
+    </div>
+
+    <h2 id="t6">6. Limitação de responsabilidade</h2>
+    <p>A FJ Smart não se responsabiliza por:</p>
+    <ul>
+      <li>Resultados decorrentes da aplicação de conteúdo gratuito sem formalização de contrato;</li>
+      <li>Indisponibilidade temporária do site por manutenção;</li>
+      <li>Decisões tomadas com base em informações publicadas sem consultoria contratada;</li>
+      <li>Danos causados por vírus ou falhas de terceiros no acesso ao site.</li>
+    </ul>
+    <p>Os serviços contratados são regidos exclusivamente pelo contrato assinado entre as partes.</p>
+
+    <h2 id="t7">7. Links externos</h2>
+    <p>O site pode conter links para plataformas externas (WhatsApp, LinkedIn, Instagram, YouTube). A FJ Smart não controla o conteúdo nem as políticas dessas plataformas.</p>
+
+    <h2 id="t8">8. Alterações nestes termos</h2>
+    <p>Estes Termos podem ser atualizados a qualquer momento, sem aviso prévio. A data de atualização no topo desta página indica a versão vigente.</p>
+
+    <h2 id="t9">9. Foro e lei aplicável</h2>
+    <p>Estes Termos são regidos pelas leis brasileiras. Fica eleito o foro da comarca de <strong>Caxias do Sul — RS</strong> para dirimir quaisquer controvérsias, com renúncia a qualquer outro foro, por mais privilegiado que seja.</p>
+
+    <h2 id="t10">10. Contato</h2>
+    <div class="contact-box">
+      <p><strong>FJ Smart — Inteligência Pessoal</strong></p>
+      <p>E-mail: <a href="mailto:contato@fjsmart.com.br">contato@fjsmart.com.br</a></p>
+      <p>WhatsApp: <a href="https://wa.me/5554996419886" target="_blank" rel="noopener">(54) 99641-9886</a></p>
+      <p>Site: <a href="https://fjsmart.com.br">fjsmart.com.br</a></p>
+    </div>
+  </div>
+
+  <!-- ===== POLÍTICA DE PRIVACIDADE ===== -->
+  <div id="tab-privacidade" class="doc-section">
+    <div class="date-badge">🔒 Versão 1.1 · Junho de 2025 · LGPD</div>
+    <div class="callout">
+      <p>Esta Política está em conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018)</strong>.</p>
+    </div>
+    <div class="toc">
+      <div class="toc-title">Índice</div>
+      <ol>
+        <li><a href="#p1">Controlador dos dados</a></li>
+        <li><a href="#p2">Quais dados coletamos</a></li>
+        <li><a href="#p3">Como usamos seus dados</a></li>
+        <li><a href="#p4">Base legal (LGPD)</a></li>
+        <li><a href="#p5">Compartilhamento de dados</a></li>
+        <li><a href="#p6">Armazenamento e segurança</a></li>
+        <li><a href="#p7">Seus direitos como titular</a></li>
+        <li><a href="#p8">Cookies e rastreamento</a></li>
+        <li><a href="#p9">Retenção dos dados</a></li>
+        <li><a href="#p10">Alterações nesta política</a></li>
+        <li><a href="#p11">Canal de privacidade</a></li>
+      </ol>
+    </div>
+
+    <h2 id="p1">1. Controlador dos dados</h2>
+    <div class="contact-box">
+      <p><strong>FJ Smart — Inteligência Pessoal</strong></p>
+      <p>Responsável: <strong>Felipe Jesus</strong></p>
+      <p>E-mail: <a href="mailto:contato@fjsmart.com.br">contato@fjsmart.com.br</a></p>
+      <p>Site: <a href="https://fjsmart.com.br">fjsmart.com.br</a></p>
+    </div>
+
+    <h2 id="p2">2. Quais dados coletamos</h2>
+    <h3>2.1 Dados fornecidos por você</h3>
+    <ul>
+      <li><strong>Nome completo</strong> — identificação no atendimento;</li>
+      <li><strong>E-mail</strong> — comunicação e envio de materiais solicitados;</li>
+      <li><strong>Mensagem / interesse</strong> — direcionamento do atendimento.</li>
+    </ul>
+    <h3>2.2 Dados coletados automaticamente</h3>
+    <ul>
+      <li>Endereço IP (parcialmente anonimizado);</li>
+      <li>Tipo de dispositivo e navegador;</li>
+      <li>Páginas visitadas e tempo de permanência;</li>
+      <li>Origem do acesso.</li>
+    </ul>
+    <h3>2.3 O que não coletamos</h3>
+    <p>A FJ Smart <strong>não coleta</strong> dados sensíveis (saúde, biometria, origem racial, etc.), dados de menores de 18 anos, nem informações financeiras diretamente pelo site.</p>
+
+    <h2 id="p3">3. Como usamos seus dados</h2>
+    <ul>
+      <li>Responder sua solicitação de contato ou diagnóstico;</li>
+      <li>Enviar materiais gratuitos solicitados;</li>
+      <li>Apresentar propostas comerciais;</li>
+      <li>Enviar comunicações sobre serviços FJ Smart, com seu consentimento;</li>
+      <li>Melhorar a experiência no site (dados anonimizados).</li>
+    </ul>
+    <div class="callout gold">
+      <p><strong>Sem spam.</strong> Você não será incluído em listas de marketing sem consentimento explícito. Toda comunicação inclui opção de descadastramento.</p>
+    </div>
+
+    <h2 id="p4">4. Base legal (LGPD)</h2>
+    <ul>
+      <li><strong>Consentimento (Art. 7º, I):</strong> quando você preenche formulários voluntariamente;</li>
+      <li><strong>Execução de contrato (Art. 7º, V):</strong> quando os dados são necessários para o serviço contratado;</li>
+      <li><strong>Legítimo interesse (Art. 7º, IX):</strong> para melhoria do site e comunicação relevante.</li>
+    </ul>
+
+    <h2 id="p5">5. Compartilhamento de dados</h2>
+    <p>A FJ Smart <strong>não vende, aluga nem cede</strong> seus dados. Compartilhamento ocorre apenas com:</p>
+    <ul>
+      <li><strong>Supabase:</strong> banco de dados com criptografia em trânsito e certificação de segurança;</li>
+      <li><strong>Ferramentas de análise:</strong> dados anonimizados;</li>
+      <li><strong>Autoridades legais:</strong> quando exigido por determinação judicial.</li>
+    </ul>
+
+    <h2 id="p6">6. Armazenamento e segurança</h2>
+    <ul>
+      <li>Criptografia em trânsito (HTTPS/TLS);</li>
+      <li>Políticas de acesso restrito (Row Level Security no Supabase);</li>
+      <li>Acesso apenas pela FJ Smart para as finalidades declaradas.</li>
+    </ul>
+    <p>Em caso de incidente de segurança que afete seus dados, você será notificado conforme exigido pela LGPD.</p>
+
+    <h2 id="p7">7. Seus direitos como titular</h2>
+    <p>Conforme o Art. 18 da LGPD, você tem direito a:</p>
+    <ul>
+      <li><strong>Confirmação</strong> de que seus dados são tratados pela FJ Smart;</li>
+      <li><strong>Acesso</strong> aos dados que temos sobre você;</li>
+      <li><strong>Correção</strong> de dados incompletos ou desatualizados;</li>
+      <li><strong>Eliminação</strong> de dados desnecessários ou tratados em desconformidade;</li>
+      <li><strong>Portabilidade</strong> dos seus dados para outro prestador;</li>
+      <li><strong>Revogação do consentimento</strong> a qualquer momento;</li>
+      <li><strong>Oposição</strong> ao tratamento baseado em legítimo interesse.</li>
+    </ul>
+    <div class="callout">
+      <p>Prazo de resposta: até <strong>15 dias corridos</strong> a partir da solicitação, conforme Art. 19 da LGPD. Envie e-mail com assunto <strong>"Direitos LGPD"</strong>.</p>
+    </div>
+
+    <h2 id="p8">8. Cookies e rastreamento</h2>
+    <ul>
+      <li><strong>Cookies técnicos:</strong> necessários ao funcionamento do site. Não podem ser desativados.</li>
+      <li><strong>Cookies analíticos:</strong> dados anonimizados. Podem ser bloqueados no navegador.</li>
+    </ul>
+    <p>Não usamos cookies de publicidade ou rastreamento comportamental para anúncios.</p>
+
+    <h2 id="p9">9. Retenção dos dados</h2>
+    <ul>
+      <li>Leads (formulário): até 24 meses ou até revogação do consentimento;</li>
+      <li>Clientes com contrato ativo: prazo contratual + 5 anos;</li>
+      <li>Dados anonimizados de análise: indefinidamente.</li>
+    </ul>
+
+    <h2 id="p10">10. Alterações nesta política</h2>
+    <p>Esta Política pode ser revisada a qualquer momento. Alterações relevantes serão comunicadas por e-mail e indicadas pela data de atualização no topo desta página.</p>
+
+    <h2 id="p11">11. Canal de privacidade</h2>
+    <div class="contact-box">
+      <p><strong>Dúvidas ou exercício de direitos LGPD:</strong></p>
+      <p>E-mail: <a href="mailto:contato@fjsmart.com.br">contato@fjsmart.com.br</a></p>
+      <p>Assunto: <strong>"Direitos LGPD"</strong> ou <strong>"Privacidade de Dados"</strong></p>
+      <p>Prazo: até <strong>15 dias corridos</strong></p>
+      <p>WhatsApp: <a href="https://wa.me/5554996419886" target="_blank" rel="noopener">(54) 99641-9886</a></p>
+    </div>
+  </div>
+
+  <!-- ===== CONSENTIMENTO IA ===== -->
+  <div id="tab-ia" class="doc-section">
+    <div class="date-badge violet">🤖 Versão 1.0 · Junho de 2025 · LGPD + IA</div>
+
+    <div class="callout violet">
+      <p>Este Termo regula o uso de <strong>voz, imagem, depoimentos e outros dados pessoais</strong> de clientes e colaboradores da FJ Smart no contexto de ferramentas, sistemas e produções que envolvam <strong>Inteligência Artificial</strong>. Fundamentos legais: Art. 7º, I e Art. 11, I da LGPD (Lei nº 13.709/2018) · Art. 5º, X da Constituição Federal · Art. 20 do Código Civil.</p>
+    </div>
+
+    <div class="toc violet">
+      <div class="toc-title">Índice</div>
+      <ol>
+        <li><a href="#ia1">Quem este termo se aplica</a></li>
+        <li><a href="#ia2">O que você está autorizando</a></li>
+        <li><a href="#ia3">Para quais finalidades</a></li>
+        <li><a href="#ia4">O que não faremos</a></li>
+        <li><a href="#ia5">Ferramentas de IA utilizadas</a></li>
+        <li><a href="#ia6">Compartilhamento e terceiros</a></li>
+        <li><a href="#ia7">Direito de revogação</a></li>
+        <li><a href="#ia8">Direitos sobre o conteúdo gerado</a></li>
+        <li><a href="#ia9">Vigência e contato</a></li>
+        <li><a href="#ia10">Aceite formal</a></li>
+      </ol>
+    </div>
+
+    <h2 id="ia1">1. A quem este termo se aplica</h2>
+    <p>Este Termo é destinado a qualquer pessoa que, no contexto de projetos, sessões de mentoria, workshops, diagnósticos, gravações ou qualquer interação com a <strong>FJ Smart — Inteligência Pessoal</strong>, forneça voluntariamente dados como:</p>
+    <ul>
+      <li>Voz (áudio de reuniões, entrevistas, workshops ou depoimentos);</li>
+      <li>Imagem (foto, vídeo, captura de tela ou aparição em transmissão ao vivo);</li>
+      <li>Texto de depoimentos, feedbacks ou relatos de resultados;</li>
+      <li>Dados profissionais e contextuais fornecidos durante diagnósticos.</li>
+    </ul>
+    <p>O fornecimento é sempre <strong>voluntário</strong>. A recusa não impede a prestação dos serviços contratados.</p>
+
+    <h2 id="ia2">2. O que você está autorizando</h2>
+    <p>Ao aceitar este Termo, você autoriza a FJ Smart a capturar, armazenar e utilizar os dados descritos acima para as finalidades listadas na seção 3, podendo envolver o uso de ferramentas de Inteligência Artificial.</p>
+
+    <div class="scope-grid">
+      <div class="sc">
+        <div class="sc-label">Dados de voz</div>
+        <div class="sc-items">Gravações de sessões, entrevistas, workshops e depoimentos em áudio ou vídeo.</div>
+      </div>
+      <div class="sc">
+        <div class="sc-label">Dados de imagem</div>
+        <div class="sc-items">Fotos, capturas de tela, vídeos de sessões ao vivo ou depoimentos gravados.</div>
+      </div>
+      <div class="sc">
+        <div class="sc-label">Depoimentos escritos</div>
+        <div class="sc-items">Textos de feedback, resultados obtidos e relatos de experiência com os serviços.</div>
+      </div>
+      <div class="sc">
+        <div class="sc-label">Dados de diagnóstico</div>
+        <div class="sc-items">Informações profissionais e organizacionais fornecidas durante o processo DELTA, anonimizadas para uso em conteúdo educativo.</div>
+      </div>
+    </div>
+
+    <h2 id="ia3">3. Para quais finalidades</h2>
+    <h3 class="violet">3.1 Comunicação e marketing institucional</h3>
+    <ul>
+      <li>Publicação de depoimentos (escritos, em áudio ou vídeo) no site fjsmart.com.br;</li>
+      <li>Divulgação em redes sociais da FJ Smart (Instagram, LinkedIn, YouTube, TikTok);</li>
+      <li>Uso em materiais de divulgação dos serviços — propostas, apresentações e newsletters.</li>
+    </ul>
+
+    <h3 class="violet">3.2 Produção de conteúdo com IA</h3>
+    <ul>
+      <li>Transcrição automática de áudios e vídeos de sessões para elaboração de relatórios e documentação;</li>
+      <li>Geração de resumos automáticos de diagnósticos usando ferramentas de IA (ex: ChatGPT, Claude, Gemini);</li>
+      <li>Produção de conteúdo educativo baseado em casos reais, sempre <strong>anonimizado</strong> — nenhum nome, empresa ou dado identificável é divulgado sem autorização explícita adicional.</li>
+    </ul>
+
+    <h3 class="violet">3.3 Audiobook e materiais educativos</h3>
+    <ul>
+      <li>Uso de depoimentos e relatos em materiais de capacitação, cursos e publicações da FJ Smart;</li>
+      <li>Conversão de texto para áudio por ferramentas TTS (text-to-speech), utilizando exclusivamente a voz do autor do conteúdo ou voz sintética da FJ Smart — nunca a voz do cliente sem autorização específica adicional.</li>
+    </ul>
+
+    <h3 class="violet">3.4 Treinamento interno e melhoria de metodologia</h3>
+    <ul>
+      <li>Análise agregada e anonimizada de resultados de diagnósticos para aprimoramento do Método DELTA™.</li>
+    </ul>
+
+    <h2 id="ia4">4. O que a FJ Smart NÃO fará</h2>
+    <div class="callout red">
+      <p>Este é o nosso compromisso inegociável com você.</p>
+    </div>
+    <ul>
+      <li><strong>Não venderemos</strong> sua voz, imagem ou dados a terceiros para qualquer finalidade comercial;</li>
+      <li><strong>Não usaremos</strong> sua voz ou imagem para treinar modelos de IA de terceiros sem consentimento expresso e específico;</li>
+      <li><strong>Não criaremos</strong> deepfakes, réplicas digitais ou simulações da sua voz ou aparência sem sua autorização formal e por escrito;</li>
+      <li><strong>Não divulgaremos</strong> dados identificáveis de diagnósticos ou projetos sem sua aprovação prévia;</li>
+      <li><strong>Não usaremos</strong> seus dados em finalidade distinta das declaradas neste Termo sem novo consentimento;</li>
+      <li><strong>Não atribuiremos</strong> a você falas, opiniões ou resultados que não sejam os seus, usando IA ou qualquer outra tecnologia.</li>
+    </ul>
+
+    <h2 id="ia5">5. Ferramentas de IA utilizadas</h2>
+    <p>A FJ Smart pode utilizar as seguintes categorias de ferramentas no processamento dos dados autorizados:</p>
+    <ul>
+      <li><strong>Transcrição:</strong> ferramentas de speech-to-text (ex: Whisper, Otter.ai, Notta);</li>
+      <li><strong>Síntese e resumo:</strong> modelos de linguagem (ex: ChatGPT, Claude, Gemini);</li>
+      <li><strong>Geração de voz sintética:</strong> para conteúdo da FJ Smart — nunca para replicar a voz do cliente;</li>
+      <li><strong>Edição de imagem e vídeo:</strong> para produção de conteúdo institucional com base em materiais autorizados.</li>
+    </ul>
+    <p>A lista pode ser atualizada. Em caso de nova ferramenta que implique uso diferente dos dados, você será notificado e poderá revisar seu consentimento.</p>
+
+    <h2 id="ia6">6. Compartilhamento com terceiros</h2>
+    <p>Os dados autorizados podem ser processados por ferramentas de terceiros (listadas acima) exclusivamente para as finalidades declaradas. Cada ferramenta possui sua própria política de privacidade, e a FJ Smart seleciona apenas plataformas com políticas adequadas de proteção de dados.</p>
+    <p>Nenhum dado identificável será compartilhado com terceiros para fins de marketing, publicidade ou monetização.</p>
+
+    <h2 id="ia7">7. Direito de revogação</h2>
+    <div class="revog-box">
+      <p><strong>Você pode revogar este consentimento a qualquer momento</strong>, sem custo e sem necessidade de justificativa, conforme o Art. 8º, §5º da LGPD. A revogação não afeta os tratamentos já realizados até a data do pedido, mas impede novos usos dos seus dados.</p>
+    </div>
+    <p>Para revogar: envie e-mail para <a href="mailto:contato@fjsmart.com.br" style="color:#A78BFA">contato@fjsmart.com.br</a> com o assunto <strong>"Revogação de Consentimento IA"</strong>. Respondemos em até 5 dias úteis.</p>
+
+    <h2 id="ia8">8. Direitos sobre o conteúdo gerado</h2>
+    <p>Conteúdo produzido com sua participação (depoimentos, casos documentados, estudos com sua autorização) continuará disponível nas plataformas da FJ Smart até que você solicite sua remoção. Após a revogação, os materiais identificáveis serão removidos no prazo de 15 dias corridos.</p>
+    <p>Conteúdo já publicado em plataformas externas (YouTube, Instagram, etc.) poderá levar até 30 dias para ser completamente removido, dependendo de cada plataforma.</p>
+
+    <h2 id="ia9">9. Vigência e contato</h2>
+    <p>Este Termo entra em vigor no momento do aceite e permanece válido enquanto não for revogado. A FJ Smart pode atualizá-lo para refletir mudanças nas ferramentas utilizadas ou na legislação. Alterações relevantes serão comunicadas com antecedência mínima de 15 dias.</p>
+    <div class="contact-box">
+      <p><strong>Dúvidas sobre este Termo ou sobre IA e seus dados:</strong></p>
+      <p>E-mail: <a href="mailto:contato@fjsmart.com.br">contato@fjsmart.com.br</a></p>
+      <p>Assunto sugerido: <strong>"Consentimento IA"</strong></p>
+      <p>WhatsApp: <a href="https://wa.me/5554996419886" target="_blank" rel="noopener">(54) 99641-9886</a></p>
+      <p>Resposta em até <strong>5 dias úteis</strong></p>
+    </div>
+
+    <h2 id="ia10">10. Aceite formal</h2>
+    <p>Ao aceitar este Termo — por clique, assinatura digital ou confirmação por e-mail — você declara ter lido e compreendido as condições descritas, e concorda de forma livre, informada e inequívoca com o tratamento dos seus dados para as finalidades aqui estabelecidas, nos termos do Art. 7º, I e Art. 11, I da Lei nº 13.709/2018 (LGPD).</p>
+
+    <div class="consent-block">
+      <p style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#A78BFA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;">Declaro que concordo com:</p>
+      <div class="consent-items">
+        <div class="ci">
+          <div class="ci-check"></div>
+          <div class="ci-text">O uso da minha <strong>voz e imagem</strong> para fins de comunicação institucional e conteúdo educativo da FJ Smart, conforme descrito neste Termo.</div>
+        </div>
+        <div class="ci">
+          <div class="ci-check"></div>
+          <div class="ci-text">O processamento dos meus <strong>depoimentos e dados de diagnóstico</strong> com o auxílio de ferramentas de IA para geração de relatórios, resumos e conteúdo educativo anonimizado.</div>
+        </div>
+        <div class="ci">
+          <div class="ci-check"></div>
+          <div class="ci-text">A publicação do meu <strong>depoimento</strong> (texto, áudio ou vídeo) no site, redes sociais e materiais da FJ Smart, com meu nome e empresa, conforme acordado.</div>
+        </div>
+        <div class="ci">
+          <div class="ci-check"></div>
+          <div class="ci-text">Estou ciente de que posso <strong>revogar este consentimento</strong> a qualquer momento, sem custo, por e-mail para contato@fjsmart.com.br.</div>
+        </div>
+      </div>
+
+      <div class="sig-area">
+        <p style="font-size:12px;color:rgba(245,247,250,0.45);margin-bottom:1.25rem;">Este bloco é para uso em cópia impressa ou assinalamento digital. O aceite por e-mail ou plataforma tem o mesmo valor legal.</p>
+        <div class="sig-grid">
+          <div class="sig-block">
+            <div class="sig-line"></div>
+            <div class="sig-label">Assinatura do titular</div>
+            <div class="sig-name">Nome · Empresa · Data</div>
+          </div>
+          <div class="sig-block">
+            <div class="sig-line"></div>
+            <div class="sig-label">FJ Smart — Controlador</div>
+            <div class="sig-name">Felipe Jesus · FJ Smart · Inteligência Pessoal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-ia -->
+
+</main>
+
+<div class="doc-footer">
+  <span class="footer-brand">FJ SMART · INTELIGÊNCIA PESSOAL · fjsmart.com.br</span>
+  <span class="footer-tag">Documentos Legais v2.0 · LGPD compliant · Junho 2025</span>
+</div>
+
+<script>
+function showTab(tab, btn) {
+  document.querySelectorAll('.doc-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</BaseLayout>
