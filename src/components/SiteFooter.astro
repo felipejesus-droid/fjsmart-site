@@ -1,0 +1,30 @@
+---
+// src/components/SiteFooter.astro
+export interface Props {
+  subtitle?: string; // linha pequena abaixo da marca, ex: "Guia DELTA para Profissões · 161 profissões"
+}
+const { subtitle = "" } = Astro.props;
+---
+
+<footer class="fj-footer">
+  <div class="fj-footer-inner">
+    <div>
+      <div class="fj-footer-brand">FJ SMART · INTELIGÊNCIA PESSOAL</div>
+      {subtitle && <div class="fj-footer-subtitle">{subtitle}</div>}
+    </div>
+    <div class="fj-footer-links">
+      <a href="https://fjsmart.com.br" class="fj-footer-link">fjsmart.com.br ↗</a>
+      <a href="https://wa.me/5554996419886" class="fj-footer-link">WhatsApp ↗</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .fj-footer{background:#03060D;border-top:0.5px solid rgba(255,255,255,0.05);padding:24px 20px;}
+  .fj-footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;}
+  .fj-footer-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:rgba(245,247,250,0.25);}
+  .fj-footer-subtitle{font-size:10px;color:rgba(245,247,250,0.2);margin-top:2px;}
+  .fj-footer-links{display:flex;align-items:center;gap:16px;}
+  .fj-footer-link{font-size:11px;color:rgba(0,212,255,0.5);text-decoration:none;letter-spacing:0.08em;}
+  .fj-footer-link:hover{color:#00D4FF;}
+</style>

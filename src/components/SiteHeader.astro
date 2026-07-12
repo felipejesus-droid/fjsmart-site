@@ -1,0 +1,52 @@
+---
+// src/components/SiteHeader.astro
+// Header estático da FJ Smart. É renderizado no build (zero JS no cliente).
+// Reaproveite este componente em qualquer página do site — não só no Guia DELTA.
+
+export interface Props {
+  showGiftLink?: boolean; // exibe o link "🎁 Guia DELTA" (desligue se já estiver na própria página)
+}
+const { showGiftLink = true } = Astro.props;
+---
+
+<header class="fj-header">
+  <a href="/" class="fj-logo">
+    <div class="fj-logo-mark">FJ</div>
+    <div class="fj-logo-text">
+      <span class="fj-logo-brand">FJ SMART</span>
+      <span class="fj-logo-tagline">Inteligência Pessoal</span>
+    </div>
+  </a>
+  <ul class="fj-nav-links">
+    {showGiftLink && (
+      <li><a href="/guia-delta" class="fj-nav-link fj-nav-gift">🎁 Guia DELTA</a></li>
+    )}
+    <li><a href="/metodo-delta" class="fj-nav-link">Método DELTA</a></li>
+    <li><a href="/servicos" class="fj-nav-link">Serviços</a></li>
+    <li><a href="/sobre" class="fj-nav-link">Sobre</a></li>
+    <li><a href="/diagnostico" class="fj-nav-link fj-nav-cta">Agendar Diagnóstico</a></li>
+  </ul>
+</header>
+<div class="fj-accent-bar"></div>
+
+<style>
+  .fj-header{background:rgba(10,22,40,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,212,255,0.1);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:64px;}
+  .fj-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .fj-logo-mark{width:36px;height:36px;border:1.5px solid #00D4FF;border-radius:4px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,212,255,0.25);background:rgba(0,212,255,0.05);font-family:'Syne',sans-serif;font-weight:900;font-size:14px;color:#F5F7FA;letter-spacing:0.04em;}
+  .fj-logo-text{display:flex;flex-direction:column;gap:1px;}
+  .fj-logo-brand{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.1em;color:#F5F7FA;}
+  .fj-logo-tagline{font-size:9px;letter-spacing:0.3em;color:#00D4FF;text-transform:uppercase;font-weight:300;}
+  .fj-nav-links{display:flex;align-items:center;gap:20px;list-style:none;}
+  .fj-nav-link{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(245,247,250,0.5);text-decoration:none;transition:color 0.2s;}
+  .fj-nav-link:hover{color:#F5F7FA;}
+  .fj-nav-gift{color:#DCAF3C!important;border:0.5px solid rgba(220,175,60,0.3);border-radius:4px;padding:4px 10px;}
+  .fj-nav-gift:hover{background:rgba(220,175,60,0.1);}
+  .fj-nav-cta{background:#00D4FF;color:#0A1628!important;font-weight:800;padding:8px 16px;border-radius:4px;}
+  .fj-nav-cta:hover{background:#00bde8;}
+  .fj-accent-bar{height:2px;background:linear-gradient(90deg,transparent,#00D4FF,#DCAF3C,transparent);}
+
+  @media (max-width: 768px) {
+    .fj-nav-links { gap: 12px; }
+    .fj-nav-link:not(.fj-nav-cta):not(.fj-nav-gift) { display: none; }
+  }
+</style>

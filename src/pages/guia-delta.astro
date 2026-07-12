@@ -1,0 +1,21 @@
+---
+// src/pages/guia-delta.astro
+import Layout from "../layouts/Layout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import DeltaGuideApp from "../components/DeltaGuideApp.jsx";
+import { PROFS } from "../data/professions.js";
+---
+
+<Layout
+  title="Guia DELTA para Profissões — FJ Smart"
+  description={`Descubra como a IA transforma o seu cargo: ${PROFS.length} profissões mapeadas com 5 aplicações práticas cada. Presente gratuito FJ Smart.`}
+>
+  <SiteHeader />
+
+  <!-- client:load porque a busca/filtro precisa estar pronta assim que a página carrega.
+       Se preferir adiar a hidratação até o elemento entrar na viewport, troque para client:visible. -->
+  <DeltaGuideApp client:load />
+
+  <SiteFooter subtitle={`Guia DELTA para Profissões · ${PROFS.length} profissões · Presente Gratuito`} />
+</Layout>
