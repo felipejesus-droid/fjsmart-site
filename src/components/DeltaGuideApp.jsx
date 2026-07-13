@@ -23,6 +23,7 @@ function Logo({ src, name, size = 44 }) {
         }}
       >
         {name[0]}
+      </div>
     );
   }
   return (
@@ -64,16 +65,7 @@ export default function DeltaGuideApp() {
 
   return (
     <div style={{ background: "#0A1628", minHeight: "100vh", paddingBottom: 48, position: "relative" }}>
-      {/* GRID BG */}
-      <div
-        style={{
-          position: "fixed", inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px)",
-          backgroundSize: "40px 40px", pointerEvents: "none", zIndex: 0,
-        }}
-      />
-
+      
       {/* HERO */}
       <div
         style={{
@@ -94,7 +86,7 @@ export default function DeltaGuideApp() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg,transparent,#00D4FF,#DCAF3C,transparent)" }} />
 
         <div
-          className="pulse-gold"
+          className="dg-pulse-gold"
           style={{
             display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(220,175,60,0.08)",
             border: "0.5px solid rgba(220,175,60,0.3)", borderRadius: 4, padding: "5px 14px", fontSize: 11,
@@ -162,7 +154,7 @@ export default function DeltaGuideApp() {
         </div>
 
         {/* SEARCH */}
-        <div style={{ position: "relative", marginBottom: 16 }}>
+        <div className="dg-search" style={{ position: "relative", marginBottom: 16 }}>
           <span style={{ position: "absolute", left: 13, top: "50%", transform: "translateY(-50%)", fontSize: 14, color: "rgba(245,247,250,0.35)" }}>🔍</span>
           <input type="text" placeholder={`Buscar entre ${PROFS.length} profissões...`} value={q} onChange={(e) => setQ(e.target.value)} />
           {q && (
@@ -204,12 +196,12 @@ export default function DeltaGuideApp() {
           {filtered.map((p) => {
             const s = catStyle(p.cat);
             return (
-              <div key={p.id} className="card fade-up" style={{ background: "#0D1F3C", borderRadius: 10, border: "0.5px solid rgba(255,255,255,0.08)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+              <div key={p.id} className="dg-card dg-fade-up" style={{ background: "#0D1F3C", borderRadius: 10, border: "0.5px solid rgba(255,255,255,0.08)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
                 <div style={{ height: "3px", background: `linear-gradient(90deg,${s.c},transparent)` }} />
                 <div style={{ padding: "16px 14px 0", flex: 1, display: "flex", flexDirection: "column" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
                     <span style={{ fontSize: 26 }}>{p.icon}</span>
-                    <span className="chip" style={{ background: s.bg, color: s.c, borderColor: s.b, fontFamily: "'DM Mono',monospace" }}>{p.cat}</span>
+                    <span className="dg-chip" style={{ background: s.bg, color: s.c, borderColor: s.b, fontFamily: "'DM Mono',monospace" }}>{p.cat}</span>
                   </div>
                   <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 13, color: "#F5F7FA", margin: "0 0 6px", lineHeight: 1.3 }}>{p.cargo}</p>
                   <p style={{ fontSize: 11, color: "rgba(245,247,250,0.5)", lineHeight: 1.5, margin: "0 0 8px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{p.resumo}</p>
@@ -223,7 +215,7 @@ export default function DeltaGuideApp() {
                   )}
                 </div>
                 <div style={{ padding: "0 14px 14px" }}>
-                  <button className="btn-ver" onClick={() => setModal(p)} style={{ width: "100%", padding: "9px 0", background: "rgba(0,212,255,0.06)", border: "0.5px solid rgba(0,212,255,0.2)", borderRadius: 6, color: "#00D4FF", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 5, letterSpacing: "0.06em", fontFamily: "'DM Sans',sans-serif" }}>
+                  <button className="dg-btn-ver" onClick={() => setModal(p)} style={{ width: "100%", padding: "9px 0", background: "rgba(0,212,255,0.06)", border: "0.5px solid rgba(0,212,255,0.2)", borderRadius: 6, color: "#00D4FF", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 5, letterSpacing: "0.06em", fontFamily: "'DM Sans',sans-serif" }}>
                     Ver 5 aplicações de IA →
                   </button>
                 </div>
@@ -243,7 +235,7 @@ export default function DeltaGuideApp() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(155px,1fr))", gap: 10 }}>
             {uniqueTools.map((t) => (
-              <div key={t.name} className="card" onClick={() => setToolModal(t)} style={{ background: "#0D1F3C", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.07)", padding: "16px 12px 12px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+              <div key={t.name} className="dg-card" onClick={() => setToolModal(t)} style={{ background: "#0D1F3C", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.07)", padding: "16px 12px 12px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                 <div style={{ width: 48, height: 48, borderRadius: 10, border: "0.5px solid rgba(255,255,255,0.1)", background: "white", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10, overflow: "hidden", padding: 3 }}>
                   <Logo src={t.logo} name={t.name} size={42} />
                 </div>
@@ -282,14 +274,14 @@ export default function DeltaGuideApp() {
 
       {/* PROFESSION MODAL */}
       {modal && (
-        <div className="modal-bg" onClick={(e) => { if (e.target === e.currentTarget) setModal(null); }}>
-          <div className="modal scale-in">
+        <div className="dg-modal-bg" onClick={(e) => { if (e.target === e.currentTarget) setModal(null); }}>
+          <div className="dg-modal scale-in">
             <div style={{ position: "sticky", top: 0, background: "#0D1F3C", borderBottom: "0.5px solid rgba(255,255,255,0.08)", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderRadius: "20px 20px 0 0" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ fontSize: 24 }}>{modal.icon}</span>
                 <div>
                   <p style={{ margin: 0, fontWeight: 900, fontSize: 15, color: "#F5F7FA", lineHeight: 1.2 }}>{modal.cargo}</p>
-                  <span className="chip" style={{ background: catStyle(modal.cat).bg, color: catStyle(modal.cat).c, borderColor: catStyle(modal.cat).b, marginTop: 3, display: "inline-block" }}>{modal.cat}</span>
+                  <span className="dg-chip" style={{ background: catStyle(modal.cat).bg, color: catStyle(modal.cat).c, borderColor: catStyle(modal.cat).b, marginTop: 3, display: "inline-block" }}>{modal.cat}</span>
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -350,8 +342,8 @@ export default function DeltaGuideApp() {
 
       {/* TOOL MODAL */}
       {toolModal && (
-        <div className="modal-bg" onClick={(e) => { if (e.target === e.currentTarget) setToolModal(null); }}>
-          <div className="scale-in" style={{ background: "#0D1F3C", border: "0.5px solid rgba(0,212,255,0.15)", borderRadius: 12, boxShadow: "0 30px 70px rgba(0,0,0,0.5)", width: "100%", maxWidth: 420, overflow: "hidden" }}>
+        <div className="dg-modal-bg" onClick={(e) => { if (e.target === e.currentTarget) setToolModal(null); }}>
+          <div className="dg-scale-in" style={{ background: "#0D1F3C", border: "0.5px solid rgba(0,212,255,0.15)", borderRadius: 12, boxShadow: "0 30px 70px rgba(0,0,0,0.5)", width: "100%", maxWidth: 420, overflow: "hidden" }}>
             <div style={{ background: "linear-gradient(145deg,#0A1628,#0D2040)", padding: "22px 20px 18px", position: "relative", borderBottom: "0.5px solid rgba(0,212,255,0.1)" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg,transparent,#00D4FF,transparent)" }} />
               <button onClick={() => setToolModal(null)} style={{ position: "absolute", top: 14, right: 14, width: 28, height: 28, borderRadius: 4, background: "rgba(255,255,255,0.06)", border: "0.5px solid rgba(255,255,255,0.12)", color: "rgba(245,247,250,0.5)", fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
