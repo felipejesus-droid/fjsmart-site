@@ -233,9 +233,9 @@ strong { color: var(--text); font-weight: 500; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 /* ─── GUIA DELTA · classes específicas da página /guia-delta ─────────── */
-.dg-tag { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid; transition: all 0.12s; white-space: nowrap; background: #0D1F3C; color: rgba(245,247,250,0.4); border-color: rgba(255,255,255,0.08); }
-.dg-tag:hover { border-color: #00D4FF; color: #00D4FF; }
-.dg-tag.active { background: #00D4FF; color: #0A1628; border-color: #00D4FF; }
+.dg-tag { display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 999px; font-family: 'Syne', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.03em; cursor: pointer; border: 1px solid; transition: all 0.15s; white-space: nowrap; background: #0D1F3C; color: rgba(245,247,250,0.4); border-color: rgba(255,255,255,0.08); }
+.dg-tag:hover { border-color: #00D4FF; color: #00D4FF; transform: translateY(-1px); }
+.dg-tag.active { background: #00D4FF; color: #0A1628; border-color: #00D4FF; box-shadow: 0 0 0 3px rgba(0,212,255,0.12), 0 4px 14px rgba(0,212,255,0.2); }
 .dg-card { cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
 .dg-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,212,255,0.15); border-color: #00D4FF !important; }
 .dg-card:focus-within { outline: 2px solid #00D4FF; outline-offset: 2px; }

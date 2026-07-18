@@ -166,11 +166,24 @@ export default function DeltaGuideApp() {
 
         {/* CHIPS */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 24 }}>
-          {CATEGORIES.map((c) => (
-            <button key={c} className={`tag${cat === c ? " active" : ""}`} onClick={() => setCat(c)}>
-              {c} <span style={{ opacity: 0.6, fontSize: 10, marginLeft: 3 }}>({c === "Todos" ? PROFS.length : PROFS.filter((p) => p.cat === c).length})</span>
-            </button>
-          ))}
+          {CATEGORIES.map((c) => {
+            const active = cat === c;
+            const s = catStyle(c);
+            return (
+              <button
+                key={c}
+                className={`dg-tag${active ? " active" : ""}`}
+                onClick={() => setCat(c)}
+                style={
+                  active
+                    ? { background: s.c, borderColor: s.c, color: "#0A1628" }
+                    : { borderColor: s.b, color: s.c }
+                }
+              >
+                {c} <span style={{ opacity: 0.6, fontSize: 10, marginLeft: 3 }}>({c === "Todos" ? PROFS.length : PROFS.filter((p) => p.cat === c).length})</span>
+              </button>
+            );
+          })}
         </div>
 
         <p style={{ fontSize: 11, color: "rgba(245,247,250,0.3)", marginBottom: 14, fontFamily: "'DM Mono',monospace", letterSpacing: "0.05em" }}>
