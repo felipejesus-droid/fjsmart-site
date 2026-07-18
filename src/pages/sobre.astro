@@ -28,7 +28,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="founder-grid">
         <div class="founder-mark">
-          <div class="founder-monogram">FJ</div>
+          <div class="founder-photo-main">
+            <img src="/images/sobre/felipe-retrato.png" alt="Felipe Jesus, fundador da FJ Smart" />
+          </div>
+          <div class="founder-photo-secondary">
+            <img src="/images/sobre/felipe-contexto.png" alt="Felipe Jesus em ambiente de trabalho com IA" />
+          </div>
           <div class="founder-status">
             <span class="hud-dot"></span> Solo consultant · Porto Alegre, RS
           </div>
@@ -185,17 +190,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     position: sticky;
     top: 100px;
   }
-  .founder-monogram {
-    width: 160px; height: 160px;
+  .founder-photo-main {
+    width: 100%;
+    aspect-ratio: 3 / 4;
     border: 1px solid var(--border-cyan);
     border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 56px;
-    color: var(--off-white);
+    overflow: hidden;
     background: rgba(0,212,255,0.04);
     box-shadow: 0 0 40px rgba(0,212,255,0.08);
+  }
+  .founder-photo-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .founder-photo-secondary {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .founder-photo-secondary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .founder-status {
     display: flex; align-items: center; gap: 8px;
@@ -273,8 +294,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   /* ─── RESPONSIVE ──────────────────────────────────────── */
   @media (max-width: 900px) {
     .founder-grid { grid-template-columns: 1fr; }
-    .founder-mark { position: static; flex-direction: row; justify-content: flex-start; }
-    .founder-monogram { width: 80px; height: 80px; font-size: 28px; border-radius: 10px; }
+    .founder-mark { position: static; flex-direction: row; justify-content: flex-start; align-items: center; }
+    .founder-photo-main { width: 80px; aspect-ratio: 3 / 4; border-radius: 10px; }
+    .founder-photo-secondary { display: none; }
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .flow-card { flex-direction: column; align-items: flex-start; }
   }
