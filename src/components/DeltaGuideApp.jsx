@@ -12,7 +12,7 @@ import { CATEGORIES, CAT_STYLE, TOOLS } from "../data/tools.js";
 
 function Logo({ src, name, size = 44 }) {
   const [err, setErr] = useState(false);
-  if (err) {
+  if (err || !src) {
     return (
       <div
         style={{
