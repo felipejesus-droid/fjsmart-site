@@ -59,23 +59,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="delta-steps">
               <div class="delta-step">
                 <span class="delta-step-letter delta-d">D</span>
-                <div><strong>Diagnóstico</strong><br><span>Onde você está</span></div>
+                <div class="delta-step-text"><strong class="delta-step-title">Diagnóstico</strong><br><span>Onde você está</span></div>
               </div>
               <div class="delta-step">
                 <span class="delta-step-letter delta-e">E</span>
-                <div><strong>Estratégia</strong><br><span>Para onde ir</span></div>
+                <div class="delta-step-text"><strong class="delta-step-title">Estratégia</strong><br><span>Para onde ir</span></div>
               </div>
               <div class="delta-step">
                 <span class="delta-step-letter delta-l">L</span>
-                <div><strong>Lançamento</strong><br><span>Construir junto</span></div>
+                <div class="delta-step-text"><strong class="delta-step-title">Lançamento</strong><br><span>Construir junto</span></div>
               </div>
               <div class="delta-step">
                 <span class="delta-step-letter delta-t">T</span>
-                <div><strong>Transferência</strong><br><span>Educar e capacitar</span></div>
+                <div class="delta-step-text"><strong class="delta-step-title">Transferência</strong><br><span>Educar e capacitar</span></div>
               </div>
               <div class="delta-step">
                 <span class="delta-step-letter delta-a">A</span>
-                <div><strong>Autonomia</strong><br><span>Voar solo</span></div>
+                <div class="delta-step-text"><strong class="delta-step-title">Autonomia</strong><br><span>Voar solo</span></div>
               </div>
             </div>
             <div class="delta-card-footer">
@@ -451,13 +451,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .delta-l { color: #FB923C; background: rgba(251,146,60,0.08); border: 0.5px solid rgba(251,146,60,0.25); }
   .delta-t { color: #A78BFA; background: rgba(167,139,250,0.08); border: 0.5px solid rgba(167,139,250,0.25); }
   .delta-a { color: #34D399; background: rgba(52,211,153,0.08); border: 0.5px solid rgba(52,211,153,0.25); }
+  .delta-step-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   .delta-step h3, .delta-step strong {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     display: block;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
+    line-height: 1.3;
   }
-  .delta-step span { font-size: 11px; color: var(--text-dim); }
+  .delta-step span { font-size: 12px; color: var(--text-dim); line-height: 1.3; }
+
+  /* Neon glow — passa por cada palavra da sequência, uma de cada vez */
+  .delta-step-title {
+    animation: delta-word-glow 8s ease-in-out infinite;
+  }
+  @keyframes delta-word-glow {
+    0%, 84%, 100% { text-shadow: none; }
+    4%, 12% { text-shadow: 0 0 6px var(--glow-color), 0 0 16px var(--glow-color); }
+  }
+  .delta-step:nth-child(1) .delta-step-title { --glow-color: var(--electric-cyan); animation-delay: 0s; }
+  .delta-step:nth-child(2) .delta-step-title { --glow-color: #4ADE80; animation-delay: 1.6s; }
+  .delta-step:nth-child(3) .delta-step-title { --glow-color: #FB923C; animation-delay: 3.2s; }
+  .delta-step:nth-child(4) .delta-step-title { --glow-color: #A78BFA; animation-delay: 4.8s; }
+  .delta-step:nth-child(5) .delta-step-title { --glow-color: #34D399; animation-delay: 6.4s; }
+  @media (prefers-reduced-motion: reduce) {
+    .delta-step-title { animation: none; }
+  }
   .delta-card-footer {
     margin-top: 1.25rem;
     padding-top: 1rem;
