@@ -6,7 +6,7 @@
 // Diferença-chave vs. o protótipo original: aqui o JSX é compilado em build time
 // pelo Vite/Astro. Não há mais React+Babel standalone carregados via CDN no navegador.
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { PROFS } from "../data/professions.js";
 import { CATEGORIES, CAT_STYLE, TOOLS } from "../data/tools.js";
 
@@ -46,6 +46,16 @@ export default function DeltaGuideApp() {
   const [modal, setModal] = useState(null);
   const [toolModal, setToolModal] = useState(null);
   const [copied, setCopied] = useState(null);
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const filtered = useMemo(() => {
     return PROFS.filter((p) => {
@@ -387,6 +397,44 @@ export default function DeltaGuideApp() {
           </div>
         </div>
       )}
+
+      {/* BACK TO TOP */}
+      <style>{`
+        @keyframes dg-top-pulse {
+          0%   { box-shadow: 0 0 0 0 rgba(0,255,65,0.55), 0 0 12px rgba(0,255,65,0.35); }
+          70%  { box-shadow: 0 0 0 14px rgba(0,255,65,0), 0 0 12px rgba(0,255,65,0.35); }
+          100% { box-shadow: 0 0 0 0 rgba(0,255,65,0), 0 0 12px rgba(0,255,65,0.35); }
+        }
+      `}</style>
+      <button
+        onClick={scrollToTop}
+        aria-label="Voltar ao topo"
+        title="Voltar ao topo"
+        style={{
+          position: "fixed",
+          right: 20,
+          bottom: 20,
+          width: 48,
+          height: 48,
+          borderRadius: "50%",
+          background: "#0D1F3C",
+          border: "1px solid rgba(0,255,65,0.5)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          zIndex: 40,
+          animation: "dg-top-pulse 2.2s infinite",
+          opacity: showTop ? 1 : 0,
+          transform: showTop ? "translateY(0) scale(1)" : "translateY(12px) scale(0.85)",
+          pointerEvents: showTop ? "auto" : "none",
+          transition: "opacity 0.25s ease, transform 0.25s ease",
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 19V5M12 5L5 12M12 5l7 7" stroke="#00FF41" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
     </div>
   );
 }
