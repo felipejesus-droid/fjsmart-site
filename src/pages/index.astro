@@ -435,11 +435,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .delta-step-letter {
     font-family: var(--font-display);
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     font-weight: 800;
     line-height: 1;
     text-align: center;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
   }
+  .delta-d { color: var(--electric-cyan); background: rgba(0,212,255,0.08); border: 0.5px solid rgba(0,212,255,0.25); }
+  .delta-e { color: #4ADE80; background: rgba(74,222,128,0.08); border: 0.5px solid rgba(74,222,128,0.25); }
+  .delta-l { color: #FB923C; background: rgba(251,146,60,0.08); border: 0.5px solid rgba(251,146,60,0.25); }
+  .delta-t { color: #A78BFA; background: rgba(167,139,250,0.08); border: 0.5px solid rgba(167,139,250,0.25); }
+  .delta-a { color: #34D399; background: rgba(52,211,153,0.08); border: 0.5px solid rgba(52,211,153,0.25); }
   .delta-step h3, .delta-step strong {
     font-size: 13px;
     font-weight: 600;
