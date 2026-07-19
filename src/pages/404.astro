@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Página não encontrada"
+  description="A página que você procura não existe ou foi movida. Volte para a home da FJ Smart — Inteligência Pessoal."
+>
+  <section class="section notfound-section" aria-label="Página não encontrada">
+    <div class="notfound-bg" aria-hidden="true">Δ</div>
+    <div class="container">
+      <div class="notfound-inner">
+        <div class="eyebrow">Erro 404</div>
+        <h1 class="notfound-headline">Essa página saiu de rota.</h1>
+        <p class="notfound-text">
+          A página que você procura não existe ou foi movida. Que tal voltar
+          para o início e continuar por lá?
+        </p>
+        <div class="notfound-actions">
+          <a href="/" class="btn btn--gold">Voltar para a home</a>
+          <a href="/servicos" class="btn btn--ghost">Ver serviços</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound-section {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .notfound-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42rem;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--electric-cyan, #00d4ff);
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .notfound-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .notfound-headline {
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    margin: 0.75rem 0 1rem;
+    line-height: 1.15;
+  }
+
+  .notfound-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  .notfound-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
