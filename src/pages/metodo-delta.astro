@@ -1,11 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Preciso contratar as 5 fases de uma vez?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. A entrada mais comum é pelo Diagnóstico (Fase D), que já entrega valor isolado. A partir dele, a continuidade para Estratégia, Lançamento, Transferência e Autonomia é recomendada — mas decidida fase a fase, com base no que o Diagnóstico revelar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que diferencia o DELTA de uma consultoria de tecnologia comum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Duas coisas: (1) o ponto de partida é sempre um diagnóstico mensurável, nunca uma venda de ferramenta; e (2) o critério de sucesso é a autonomia do cliente — o projeto é considerado bem-sucedido quando a FJ Smart se torna opcional, não indispensável."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O FJ Smart Score serve para empresas de qualquer tamanho?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. As 5 dimensões (Estratégia, Processos, Dados, Tecnologia, Pessoas) são aplicáveis tanto a uma operação de poucas pessoas quanto a empresas com múltiplas áreas — o que muda é a profundidade da entrevista e do roadmap gerado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "E se eu for um profissional individual, não uma empresa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Método DELTA também se aplica em versão B2C — veja a Imersão IA Aplicada e o Diagnóstico Individual, que seguem a mesma lógica de Diagnóstico → Estratégia → Autonomia adaptada à escala de uma carreira."
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Método DELTA™"
   description="Método DELTA™ da FJ Smart: 5 fases para maturidade em IA — Diagnóstico, Estratégia, Lançamento, Transferência, Autonomia. Conheça o FJ Smart Score."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 
   <!-- ═══ HERO ══════════════════════════════════════════════ -->
   <section class="md-hero section" aria-label="Método DELTA">
