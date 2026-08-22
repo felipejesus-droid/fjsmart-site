@@ -1,0 +1,96 @@
+{
+  "pt-br": {
+    "common": {
+      "language": "Idioma",
+      "portuguese": "Português",
+      "english": "English"
+    },
+    "header": {
+      "brand": "FJ SMART",
+      "tagline": "Inteligência Pessoal",
+      "navGuide": "🎁 Guia DELTA",
+      "navMethod": "Método DELTA",
+      "navServices": "Serviços",
+      "navAbout": "Sobre",
+      "navDiagnostic": "Agendar Diagnóstico"
+    },
+    "footer": {
+      "brand": "FJ SMART · INTELIGÊNCIA PESSOAL"
+    },
+    "home": {
+      "heroEyebrow": "AI Transformation Consultancy",
+      "heroHeadline": "Transforme sua empresa com IA.",
+      "heroHeadlineAccent": "Com método, clareza e resultado mensurável.",
+      "heroSub": "A FJ Smart leva sua organização do diagnóstico preciso à autonomia completa com IA — usando o <strong>Método DELTA™</strong>, framework proprietário de 5 fases desenvolvido para gerar transformação real e sustentável.",
+      "heroCTA1": "Agendar Diagnóstico",
+      "heroCTA2": "Conhecer o Método DELTA",
+      "heroProof1Label": "fases estruturadas",
+      "heroProof2Label": "score mensurável",
+      "heroProof3Label": "empresas e profissionais",
+      "problemsSection": "O cenário atual",
+      "problemsHeadline": "Sua empresa fala em IA.<br>Mas sabe <em>onde está</em> e <em>para onde ir</em>?",
+      "problem1Title": "Ferramentas sem estratégia",
+      "problem1Desc": "ChatGPT instalado, mas ninguém sabe qual processo automatizar primeiro — ou qual deles vai gerar retorno real.",
+      "problem2Title": "Time sem clareza",
+      "problem2Desc": "A equipe tem medo de usar IA errado, de perder dados, de parecer \"preguiçosa\". Falta letramento, não vontade.",
+      "problem3Title": "Sem evidência de resultado",
+      "problem3Desc": "Investe-se tempo e dinheiro em projetos de IA sem um baseline claro — impossível provar o ROI para a liderança.",
+      "howItWorks": "Como funciona",
+      "deltaMethod": "O Método DELTA™",
+      "deltaDescription": "Δ — símbolo matemático de mudança e variação. Cada fase endereça uma camada da transformação, da clareza estratégica à capacitação sustentável.",
+      "serviceSection": "Para quem é",
+      "serviceHeadline": "Empresas e profissionais que querem <em>mais</em> do que ferramentas.",
+      "aboutSection": "Quem está por trás",
+      "aboutHeadline": "Não vendemos ferramentas.<br>Entregamos <em>clareza, método e resultado.</em>",
+      "ctaFinal": "Próximo passo",
+      "ctaFinalHeadline": "Você não precisa estar pronto.<br>Precisa saber <em>onde está.</em>"
+    }
+  },
+  "en": {
+    "common": {
+      "language": "Language",
+      "portuguese": "Português",
+      "english": "English"
+    },
+    "header": {
+      "brand": "FJ SMART",
+      "tagline": "Personal Intelligence",
+      "navGuide": "🎁 DELTA Guide",
+      "navMethod": "DELTA Method",
+      "navServices": "Services",
+      "navAbout": "About",
+      "navDiagnostic": "Schedule Diagnostic"
+    },
+    "footer": {
+      "brand": "FJ SMART · PERSONAL INTELLIGENCE"
+    },
+    "home": {
+      "heroEyebrow": "AI Transformation Consultancy",
+      "heroHeadline": "Transform your business with AI.",
+      "heroHeadlineAccent": "With methodology, clarity and measurable results.",
+      "heroSub": "FJ Smart takes your organization from accurate diagnosis to full autonomy with AI — using the <strong>DELTA Method™</strong>, a proprietary 5-phase framework designed to drive real and sustainable transformation.",
+      "heroCTA1": "Schedule Diagnostic",
+      "heroCTA2": "Learn the DELTA Method",
+      "heroProof1Label": "structured phases",
+      "heroProof2Label": "measurable score",
+      "heroProof3Label": "businesses & professionals",
+      "problemsSection": "The current scenario",
+      "problemsHeadline": "Your company talks about AI.<br>But do you know <em>where you are</em> and <em>where you're going</em>?",
+      "problem1Title": "Tools without strategy",
+      "problem1Desc": "ChatGPT is installed, but no one knows which process to automate first — or which one will actually generate real returns.",
+      "problem2Title": "Team without clarity",
+      "problem2Desc": "Your team is afraid of using AI wrong, of losing data, of appearing \"lazy\". There's a lack of literacy, not lack of will.",
+      "problem3Title": "No evidence of results",
+      "problem3Desc": "Time and money are invested in AI projects without a clear baseline — it's impossible to prove ROI to leadership.",
+      "howItWorks": "How it works",
+      "deltaMethod": "The DELTA Method™",
+      "deltaDescription": "Δ — mathematical symbol of change and variation. Each phase addresses a layer of transformation, from strategic clarity to sustainable enablement.",
+      "serviceSection": "Who it's for",
+      "serviceHeadline": "Businesses and professionals who want <em>more</em> than just tools.",
+      "aboutSection": "Who's behind it",
+      "aboutHeadline": "We don't sell tools.<br>We deliver <em>clarity, methodology and results.</em>",
+      "ctaFinal": "Next step",
+      "ctaFinalHeadline": "You don't need to be ready.<br>You need to know <em>where you are.</em>"
+    }
+  }
+}

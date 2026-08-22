@@ -1,0 +1,86 @@
+---
+// src/components/LanguageSwitcher.astro
+// Componente para trocar idioma. Zero JavaScript — apenas links HTML.
+// Renderizado no build, sem interatividade dinâmica.
+
+import { LANGUAGES, DEFAULT_LANGUAGE, addLanguagePrefix, removeLanguagePrefix, getLanguageFromPath } from '../i18n/config';
+import type { Language } from '../i18n/config';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const currentLanguage = getLanguageFromPath(currentPath);
+const pathWithoutLang = removeLanguagePrefix(currentPath);
+
+// Gera links para cada idioma
+const languageLinks = Object.entries(LANGUAGES).map(([code, name]) => ({
+  code: code as Language,
+  name,
+  href: addLanguagePrefix(pathWithoutLang, code as Language),
+  isCurrent: currentLanguage === code,
+}));
+---
+
+<div class="language-switcher">
+  <span class="language-label">🌐</span>
+  <div class="language-menu">
+    {languageLinks.map((link) => (
+      <a
+        href={link.href}
+        class={`language-link ${link.isCurrent ? 'is-active' : ''}`}
+        aria-current={link.isCurrent ? 'page' : undefined}
+        title={`Switch to ${link.name}`}
+      >
+        {link.name}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .language-label {
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .language-menu {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid rgba(0, 212, 255, 0.15);
+    border-radius: 4px;
+    padding: 4px 8px;
+  }
+
+  .language-link {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(245, 247, 250, 0.5);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .language-link:hover {
+    color: rgba(245, 247, 250, 0.8);
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .language-link.is-active {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.15);
+    font-weight: 700;
+  }
+</style>

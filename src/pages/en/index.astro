@@ -1,0 +1,252 @@
+---
+// src/pages/en/index.astro
+// Home page em INGLÊS
+// Esta é uma versão de exemplo para demonstrar a estrutura i18n.
+// Adapte o conteúdo conforme necessário.
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { t } from '../../i18n/utils';
+
+const lang = 'en';
+const currentPath = Astro.url.pathname;
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FJ Smart — Personal Intelligence",
+  "url": "https://fjsmart.com.br",
+  "email": "felipe@fjsmart.com.br",
+  "telephone": "+5554996419886",
+  "sameAs": [
+    "https://www.instagram.com/fjsmartoficial/",
+    "https://www.tiktok.com/@fjsmartoficial",
+    "https://x.com/fjsmartoficial",
+    "https://www.youtube.com/@fjsmart",
+    "https://open.spotify.com/user/31qcwwvykvlllamvso7p4rkxxs34",
+    "https://www.linkedin.com/in/fjsmart/"
+  ]
+};
+---
+
+<BaseLayout
+  title={t('home.heroHeadline', lang)}
+  description="FJ Smart — Personal Intelligence. Transform your business with AI: methodology, clarity and measurable results. DELTA Method™ applied to companies and professionals."
+  ogImage="/og-home.png"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
+
+  <!-- Language Switcher (demonstração) -->
+  <div style="position: fixed; top: 80px; right: 24px; z-index: 100;">
+    <LanguageSwitcher currentPath={currentPath} />
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero section" aria-label="Presentation">
+    <div class="hero-delta-bg" aria-hidden="true">Δ</div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow hero-eyebrow">{t('home.heroEyebrow', lang)}</div>
+          <h1 class="hero-headline">
+            {t('home.heroHeadline', lang)}<br>
+            <span class="hero-headline-accent">{t('home.heroHeadlineAccent', lang)}</span>
+          </h1>
+          <p class="hero-sub">
+            {t('home.heroSub', lang)}
+          </p>
+          <div class="hero-ctas">
+            <a href="/en/diagnostic" class="btn btn--primary">
+              {t('home.heroCTA1', lang)}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/en/delta-method" class="btn btn--ghost">{t('home.heroCTA2', lang)}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS SECTION -->
+  <section class="section section--sm problems" aria-label="The problem we solve">
+    <div class="container">
+      <div class="problems-eyebrow">
+        <div class="eyebrow">{t('home.problemsSection', lang)}</div>
+        <h2 set:html={t('home.problemsHeadline', lang)} />
+      </div>
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          </div>
+          <h3>{t('home.problem1Title', lang)}</h3>
+          <p>{t('home.problem1Desc', lang)}</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <h3>{t('home.problem2Title', lang)}</h3>
+          <p>{t('home.problem2Desc', lang)}</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4v16"/></svg>
+          </div>
+          <h3>{t('home.problem3Title', lang)}</h3>
+          <p>{t('home.problem3Desc', lang)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section cta-final" aria-label="Call to action">
+    <div class="container">
+      <div class="cta-final-inner">
+        <div class="eyebrow">{t('home.ctaFinal', lang)}</div>
+        <h2 set:html={t('home.ctaFinalHeadline', lang)} />
+        <p>
+          The right question isn't the cost of diagnosis — it's how much it costs to continue without clarity for another 6 months.
+        </p>
+        <div class="cta-final-actions">
+          <a href="/en/diagnostic" class="btn btn--primary" style="font-size:14px;padding:16px 36px;">
+            {t('home.heroCTA1', lang)}
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/5554996419886" target="_blank" rel="noopener" class="btn btn--ghost">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.557.821-2.816 2.088-3.645 3.711-1.557 3.194-.48 6.978 2.777 8.984 1.969 1.187 4.115 1.51 5.93.923 1.126-.357 2.129-1.023 2.958-1.686l.342 1.483c.519 2.364-.213 4.761-1.922 6.269-.713.619-1.57 1.125-2.88 1.262-1.312.137-2.593-.125-3.653-.876-1.06-.75-1.629-1.802-1.629-2.948 0-1.148.569-2.198 1.629-2.948 1.06-.75 2.34-.888 3.653-.876 1.31.137 2.167.643 2.88 1.262 1.709 1.508 2.441 3.905 1.922 6.269l-.342-1.483c.829.663 1.832 1.329 2.958 1.686 1.815.587 3.961.264 5.93-.923 3.257-2.006 4.334-5.79 2.777-8.984-.829-1.623-2.088-2.89-3.645-3.711a9.87 9.87 0 00-5.031-1.378Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--electric-cyan);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn--primary {
+    background: var(--electric-cyan);
+    color: var(--bg-base);
+  }
+
+  .btn--primary:hover {
+    background: #00bde8;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn--ghost {
+    border: 0.5px solid var(--border);
+    color: var(--text-bright);
+  }
+
+  .btn--ghost:hover {
+    border-color: var(--electric-cyan);
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .hero { padding-top: 5rem; overflow: hidden; }
+  .hero-delta-bg {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(200px, 30vw, 420px);
+    font-weight: 800;
+    color: rgba(0, 212, 255, 0.04);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: center;
+    min-height: 60vh;
+  }
+  .hero-eyebrow { margin-bottom: 1.25rem; }
+  .hero-headline {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+  .hero-headline-accent { color: var(--electric-cyan); }
+  .hero-sub { font-size: 16px; max-width: 540px; margin-bottom: 2rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+  .problems { background: rgba(0, 0, 0, 0.15); }
+  .problems-eyebrow { margin-bottom: 3rem; }
+  .problems-eyebrow h2 { margin-top: 0.5rem; }
+  .problems-eyebrow em { color: var(--electric-cyan); font-style: normal; }
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .problem-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.25s;
+  }
+  .problem-card:hover { border-color: var(--border-cyan); }
+  .problem-icon {
+    width: 40px; height: 40px;
+    border: 0.5px solid var(--border-cyan);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--electric-cyan);
+    margin-bottom: 1rem;
+    background: rgba(0, 212, 255, 0.04);
+  }
+  .problem-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-bright); }
+  .problem-card p { font-size: 13px; line-height: 1.7; }
+
+  .cta-final {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(220, 175, 60, 0.04) 100%);
+    border-top: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .cta-final-inner { max-width: 620px; margin: 0 auto; }
+  .cta-final .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .cta-final h2 { margin-bottom: 1rem; }
+  .cta-final em { color: var(--electric-cyan); font-style: normal; }
+  .cta-final p { font-size: 15px; max-width: 480px; margin: 0 auto 2rem; }
+  .cta-final-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .problems-grid { grid-template-columns: 1fr; }
+  }
+</style>
